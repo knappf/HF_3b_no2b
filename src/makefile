@@ -4,7 +4,7 @@ LD = ifx
 LDOPTS = -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread
 #LDOPTS = -L$MKLPATH -I$MKLINCLUDE -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread
 
-EXENAME = ../HF_run_dev2
+EXENAME = ../run/HF_run
 OBJS =HFB.o read_input.o dimm.o deallocate_all.o initialize_basis.o occupations.o kinetic.o v2b_bin.o v3b_no2b_bin.o interaction_binary.o v3body.o transition.o hfb_iteration.o transf_interaction.o HFB_energy.o hp_field.o hn_field.o Dp_field.o Dn_field.o diagonalization.o make_sp_levels.o make_densities.o check_densities.o R_val.o gauss_int.o TDA.o FNNtz.o VNNtz.o TDAtz.o make_qsp_levels.o MBPT_energy.o transit_calc.o transit_calc_spur.o phonon_density_calc.o diag_subspace.o spur_vec.o spur_vectz.o geom.o technical.o math.o Tcm_2b.o
 
 $(EXENAME): $(OBJS)
