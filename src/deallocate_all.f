@@ -20,7 +20,7 @@
        deallocate(H11p,H11n)
        deallocate(lp1,lp2,cg3)
        deallocate(itpoi1,klpoi1)
-       deallocate(V3BNO2)
+!       deallocate(V3BNO2)
 
        return
       end

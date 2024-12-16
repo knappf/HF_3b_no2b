@@ -1,6 +1,7 @@
       subroutine Dn_field(D1)
 
        USE technical
+       use v3body_no2b
 
        include 'define.inc'
        include 'parameters.inc'
@@ -32,23 +33,17 @@
 
            do m=1,id
             do n=1,id
-             if(klpoi1(m,n).ne.0) then
-               valp=valp+
-     &            +rhop_HFB(lp1(n),lp1(m))
-     &            *V3BNO2(i,j,k,l,0,itpoi1(1,1,3),klpoi1(m,n))
-     &            +(1.d0/3.d0)*rhon_HFB(lp1(n),lp1(m))
-     &            *V3BNO2(i,j,k,l,0,itpoi1(1,1,3),klpoi1(m,n))
-     &            +(2.d0/3.d0)*rhon_HFB(lp1(n),lp1(m))
-     &            *V3BNO2(i,j,k,l,0,itpoi1(1,1,1),klpoi1(m,n))
 
-               valn=valn+
-     &            +rhon_HFB(lp1(n),lp1(m))
-     &            *V3BNO2(i,j,k,l,0,itpoi1(1,1,3),klpoi1(m,n))
-     &            +(1.d0/3.d0)*rhop_HFB(lp1(n),lp1(m))
-     &            *V3BNO2(i,j,k,l,0,itpoi1(1,1,3),klpoi1(m,n))
-     &            +(2.d0/3.d0)*rhop_HFB(lp1(n),lp1(m))
-     &            *V3BNO2(i,j,k,l,0,itpoi1(1,1,1),klpoi1(m,n))
-             endif
+             valp=valp
+     &+rhop_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,3)
+     &+rhon_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,3)/3.d0
+     &+rhon_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,1)*2.d0/3.d0
+
+             valn=valn
+     &+rhon_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,3)
+     &+rhop_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,3)/3.d0
+     &+rhop_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,1)*2.d0/3.d0
+
             enddo
            enddo
 
