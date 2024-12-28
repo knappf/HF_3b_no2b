@@ -128,6 +128,7 @@
        enddo
 
        deallocate(Vpp_HFB,Vnn_HFB,Vpn_HFB)
+       deallocate(V3B_ar,V3B_pair)
 
        Tp=tran_p
        Tn=tran_n
@@ -674,6 +675,7 @@
 
 !$OMP END DO
 !$OMP END PARALLEL
+
 
        Vpp=Vpp_HFB
        Vnn=Vnn_HFB
