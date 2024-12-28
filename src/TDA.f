@@ -247,6 +247,11 @@
         Fpp=0.d0
         Fnn=0.d0
         Fpn=0.d0
+
+!$OMP PARALLEL DEFAULT(SHARED) 
+!$OMP& PRIVATE(j,k,l,Jpp,valp,valn,valpn
+!$OMP& phasep,phasen,phasepn,trip,trin,tripn) 
+!$OMP DO
         do i=1,id
          do j=1,id
           do k=1,id
@@ -280,6 +285,8 @@
           enddo
          enddo
         enddo
+!$OMP END DO
+!$OMP END PARALLEL
 
         if(if_QTDA.eq.0) then
          do i=1,i1
