@@ -595,9 +595,9 @@
              valn=valn+Vnn(i1,j2,k1,l1,Jp)*Tn(j2,j1)
              val0=val0+Vpn(i1,j2,k1,l1,Jp)*Tn(j2,j1)
             enddo
-            Vpp_HFB(i1,j1,k1,l1,Jp)=valp
-            Vnn_HFB(i1,j1,k1,l1,Jp)=valn
-            Vpn_HFB(i1,j1,k1,l1,Jp)=val0
+            Vpp_HFB(i1,j1,k1,l1,Jp)=real(valp,4)
+            Vnn_HFB(i1,j1,k1,l1,Jp)=real(valn,4)
+            Vpn_HFB(i1,j1,k1,l1,Jp)=real(val0,4)
            enddo
           enddo
          enddo
