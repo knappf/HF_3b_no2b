@@ -703,7 +703,7 @@
               if(abs(Vpp_HFB(i1,i2,i3,i4,Jp)).gt.precis) then 
               write(1) 
      &   int(-1,1),int(2*Jp,1), int(i,2),int(j,2),int(k,2),int(l,2)
-     &   ,real(Vpp_HFB(i1,i2,i3,i4,Jp)/xnorm,4)
+     &   ,real(Vpp_HFB(i1,i2,i3,i4,Jp),8)/xnorm
 !              write(2,'(6i5,f10.5)')
 !     &   -1,Jp,i1,i2,i3,i4,Vpp_HFB(i1,i2,i3,i4,Jp)
               endif
@@ -728,7 +728,7 @@
               if(abs(Vpn_HFB(i1,i2,i3,i4,Jp)).gt.precis) then 
               write(1) 
      &   int(0,1),int(2*Jp,1), int(i,2),int(j,2),int(k,2),int(l,2)
-     &   ,real(Vpn_HFB(i1,i2,i3,i4,Jp),4)
+     &   ,real(Vpn_HFB(i1,i2,i3,i4,Jp),8)
 !              write(2,'(6i5,f10.5)')
 !     &   0,Jp,i1,i2,i3,i4,Vpn_HFB(i1,i2,i3,i4,Jp)
 
@@ -760,7 +760,7 @@
               if(abs(Vnn_HFB(i1,i2,i3,i4,Jp)).gt.precis) then
               write(1)
      &   int(1,1),int(2*Jp,1), int(i,2),int(j,2),int(k,2),int(l,2)
-     &   ,real(Vnn_HFB(i1,i2,i3,i4,Jp)/xnorm,4)
+     &   ,real(Vnn_HFB(i1,i2,i3,i4,Jp),8)/xnorm
 !              write(2,'(6i5,f10.5)')
 !     &   1,Jp,i1,i2,i3,i4,Vnn_HFB(i1,i2,i3,i4,Jp)
 
