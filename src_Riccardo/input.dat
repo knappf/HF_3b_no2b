@@ -1,0 +1,14 @@
+16,8     ! mass and proton number
+3,6,9       ! noscmax (maximal shell number) for HFB, noscmax12, noscmax123
+3,6,9       ! dmax (wanted model space) dmax, dmax12, dmax123, (keep dmax=noscmax and dmax12=noscmax12)
+0       ! if_2B (= 0 noscmax12 is not applied on V^{2B}, = 1 noscmax12 is applied also on V^{2B})
+1,10,1,10      ! min_p,max_p,min_n,max_n - config. space for TDA
+0       ! if_QTDA (= 0 for TDA, = 1 for QTDA)
+1.d-12  ! precision parameter
+16.0    ! hbar*omega [MeV]
+1.0,1.0,1.0,1.0 ! quenching of proton-proton, neutron-neutron, proton-neutron and F interaction
+1.0      ! strength of the NNN interaction
+0       ! if_ort (= 0 without orthog., = 1 with orthog)
+
+We count the oscillator shells as N = 0,1,2,3,4,... So the total number of shells is equal to (noscmax + 1)
+Now the interaction matrix elements are produced just till noscmax=5
