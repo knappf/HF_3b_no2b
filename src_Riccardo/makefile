@@ -25,7 +25,7 @@ deallocate_all.o: deallocate_all.f technical.o
 #interaction.o: interaction.f technical.o geom.o Tcm_2b.o v3body.o v3b_no2b_bin.o
 #	$(FC) $(FCOPTS) -c interaction.f
 
-interaction_binary.o: interaction_binary.f technical.o geom.o Tcm_2b.o v3body.o v3b_no2b_bin.o
+interaction_binary.o: interaction_binary.f technical.o geom.o Tcm_2b.o v3body.o v3b_no2b_bin.o v2body.o
 	$(FC) $(FCOPTS) -c interaction_binary.f
 
 v2b_bin.o: v2b_bin.f90 technical.o Tcm_2b.o

@@ -12,7 +12,7 @@ integer(kind=8) :: n3b_el
 integer :: e1max, e2max, e3max, lmax
 integer :: d1max, d2max, d3max
 integer :: nlev
-integer(kind=8) :: cnt,total_cnt,nelms,felms
+integer(kind=8) :: cnt,total_cnt,nelms,delms
 integer(kind=8) :: pair_ij,tmp4,tmp6,iv3b,iiv3b,jjv3b
 integer :: i
 integer :: i1, n1, l1, j1, e1, ch12
@@ -151,29 +151,29 @@ open(runit, file='3belem_NO2.stream.bin', action='read', iostat=io,form='unforma
                         cnt = cnt + 1
                         total_cnt = total_cnt + 1
 !!! changes here
-                        if(l1 > lmax) cycle
-                        if(l2 > lmax) cycle
-                        if(l3 > lmax) cycle
+                        if(l1 > d1max) cycle
+                        if(l2 > d1max) cycle
+                        if(l3 > d1max) cycle
 
-                        if(l4 > lmax) cycle
-                        if(l5 > lmax) cycle
-                        if(l6 > lmax) cycle
+                        if(l4 > d1max) cycle
+                        if(l5 > d1max) cycle
+                        if(l6 > d1max) cycle
 
-                        if(e1 > e1max) cycle
-                        if(e2 > e1max) cycle
-                        if(e3 > e1max) cycle
+                        if(e1 > d1max) cycle
+                        if(e2 > d1max) cycle
+                        if(e3 > d1max) cycle
 
-                        if(e4 > e1max) cycle
-                        if(e5 > e1max) cycle
-                        if(e6 > e1max) cycle
+                        if(e4 > d1max) cycle
+                        if(e5 > d1max) cycle
+                        if(e6 > d1max) cycle
 
-                        if(e1 + e2 > e2max) cycle
-                        if(e2 + e3 > e2max) cycle
-                        if(e3 + e1 > e2max) cycle
+                        if(e1 + e2 > d2max) cycle
+                        if(e2 + e3 > d2max) cycle
+                        if(e3 + e1 > d2max) cycle
 
-                        if(e4 + e5 > e2max) cycle
-                        if(e5 + e6 > e2max) cycle
-                        if(e6 + e4 > e2max) cycle
+                        if(e4 + e5 > d2max) cycle
+                        if(e5 + e6 > d2max) cycle
+                        if(e6 + e4 > d2max) cycle
 
 !                        if(e1 + e2 + e3 > e3max) cycle
 !                        if(e4 + e5 + e6 > e3max) cycle
@@ -312,7 +312,7 @@ open(runit, file='3belem_NO2.stream.bin', action='read', iostat=io,form='unforma
     close(runit)
     deallocate(v)
 
-    write(*,*) "Loaded 3b No2b MEs:", iv3b 
+    write(*,*) "Compressed 3b No2b MEs:", iv3b 
     
 !!! sorting array
 ! fist keep only the non-zero values
@@ -338,8 +338,9 @@ open(runit, file='3belem_NO2.stream.bin', action='read', iostat=io,form='unforma
 
 ! finally we set index 0 to 0 for possible anomaly in v3body.f  
 
-  V3B_ar(0)=0.0
-  V3B_pair(0)=0
+   V3B_ar(0)=0.0
+   V3B_pair(0)=0
+   write(*,*)'Compressed V3B array size (GB)', iv3b*4.d0/(1024.d0*1024.d0*1024.d0)
  
  ! write(*,*) "Loaded number of 3b No2b MEs: ", total_cnt
   if (total_cnt /= nelms) then

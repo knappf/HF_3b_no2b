@@ -27,7 +27,6 @@
 !      I don't want to interfere with the program
 !      Just uncompressing the 2BME from now on       
         call Unpack_2b(id,jmax)
-        write(*,*)"Unpacked 2BMEs",id,jmax  
 
        
 !       Vpp=Vpp+3.d0*Vpp_DD

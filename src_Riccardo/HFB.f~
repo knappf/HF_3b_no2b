@@ -9,8 +9,8 @@
 
         call read_input
 
-        call dimm(id,dmax)  !calculates the dimension 'id' for no. of shells 'dmax'
-        call dimm(id_file,noscmax)  !calculates the dimension 'id' for no. of shells 'noscmax'
+        call dimm(id,noscmax)  !calculates the dimension 'id' for no. of shells 'noscmax'
+        call dimm(id_file,fmax)  !calculates the dimension 'id' for no. of shells 'fmax'
 
         call initialize_basis
         call occupations

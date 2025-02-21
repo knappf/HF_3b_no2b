@@ -6,17 +6,10 @@
        include 'parameters.inc'
        include 'commons.inc'
 
-!!!    Substitution needed for resticted model space
-       
-!!!       allocate(levp(id),levn(id))
-!!!       allocate(lhfp(id),lhfn(id))
-!!!       allocate(lev1pn(id),lp1(id),lp2(id))
+       allocate(levp(id),levn(id))
+       allocate(lhfp(id),lhfn(id))
+       allocate(lev1pn(id),lp1(id),lp2(id))
 
-       allocate(levp(id_file),levn(id_file))
-       allocate(lhfp(id_file),lhfn(id_file))
-       allocate(lev1pn(id_file),lp1(id_file),lp2(id_file))
-
-       
        im = 0
 
        do N = 0,noscmax
@@ -170,8 +163,7 @@
        enddo
 
        allocate(lev3(id3))
-!!!       allocate(lpoint(id,id,id,0:jmax,0:1,3))
-       allocate(lpoint(id_file,id_file,id_file,0:jmax,0:1,3))
+       allocate(lpoint(id,id,id,0:jmax,0:1,3))
        lpoint=0
 
        id3=0
@@ -250,8 +242,7 @@
 
 
        allocate(itpoi1(0:1,0:1,1:3)) 
-!!!       allocate(klpoi1(id,id))
-       allocate(klpoi1(id_file,id_file))
+       allocate(klpoi1(id,id))
        itpoi1=0
        klpoi1=0
 

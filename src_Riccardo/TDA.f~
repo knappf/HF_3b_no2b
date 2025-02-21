@@ -67,6 +67,7 @@
         do Jp=0,jmax
 
         write(*,*) 'TDA calculation for pi=',ipar,'J=',Jp
+        write(*,*) min_p,max_p,min_n,max_n,id_file,id
 
         
        if(if_QTDA.eq.0) then

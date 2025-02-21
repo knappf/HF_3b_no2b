@@ -72,9 +72,10 @@ do i = 1, id_val
    enddo
 enddo
 
-deallocate(Vpp)
-deallocate(Vnn)
-deallocate(Vpn)
+
+!deallocate(Vpp)
+!deallocate(Vnn)
+!deallocate(Vpn)
 
 allocate(Vpp_ar(c_pp))
 allocate(Vpp_pair(c_pp))
@@ -169,6 +170,8 @@ do i = 1, id_val
    enddo
 enddo
 
+deallocate(Vpp_ar,Vnn_ar,Vpn_ar)
+deallocate(Vpp_pair,Vnn_pair,Vpn_pair)
 
 end subroutine Unpack_2b
 

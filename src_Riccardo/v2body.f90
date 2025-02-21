@@ -72,7 +72,10 @@ do i = 1, id_val
    enddo
 enddo
 
-deallocate(Vpp,Vnn,Vpn)
+
+deallocate(Vpp)
+deallocate(Vnn)
+deallocate(Vpn)
 
 allocate(Vpp_ar(c_pp))
 allocate(Vpp_pair(c_pp))
