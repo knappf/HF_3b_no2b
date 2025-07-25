@@ -24,15 +24,20 @@
        Vpp_gen=0.d0
        Vnn_gen=0.d0
 
+!$OMP PARALLEL DEFAULT(SHARED) 
+!$OMP& PRIVATE(j,k,l,valp,valn,m,n)
        do i=1,id
         do j=1,id
+        if(klpoi1(i,j).ne.0) then
          do k=1,id
           do l=1,id
+          if(klpoi1(k,l).ne.0) then
            valp=0.d0
            valn=0.d0
 
            do m=1,id
             do n=1,id
+            if(klpoi1(m,n).ne.0) then
 
              valp=valp
      &+rhop_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,3)
@@ -43,6 +48,7 @@
      &+rhon_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,3)
      &+rhop_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,3)/3.d0
      &+rhop_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,1)*2.d0/3.d0
+            endif
 
             enddo
            enddo
@@ -51,10 +57,18 @@
      &                         Vpp(lp1(i),lp1(j),lp1(k),lp1(l),0)+valp
            Vnn_gen(lp1(i),lp1(j),lp1(k),lp1(l))=
      &                         Vnn(lp1(i),lp1(j),lp1(k),lp1(l),0)+valn
+           endif
           enddo
          enddo
+         endif
         enddo
        enddo
+!$OMP END PARALLEL
+
+       D1=0.d0
+
+!$OMP PARALLEL DEFAULT(SHARED) 
+!$OMP& PRIVATE(j,k,l,val)
 
        do i=1,id
         do j=1,id
@@ -62,14 +76,17 @@
           val=0.d0
           do k=1,id
            do l=1,id
+           if(levp(k)%j2.eq.levp(l)%j2.and.levp(k)%l.eq.levp(l)%l) then
             val=val+Vpp_gen(k,l,i,j)
      &                *kapp_HFB(l,k)*dsqrt(dble(levp(k)%j2+1))
+           endif
            enddo
           enddo
           D1(i,j)=0.5d0*val/dsqrt(dble(levp(i)%j2+1))
          endif
         enddo
        enddo
+!$OMP END PARALLEL
 
        deallocate(Vpp_gen,Vnn_gen)
 
