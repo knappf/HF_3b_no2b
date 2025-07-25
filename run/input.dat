@@ -1,8 +1,8 @@
-16,8     ! mass and proton number
-3,6,9       ! noscmax (maximal shell number) for HFB, noscmax12, noscmax123
+20,8     ! mass and proton number
+10,20,10       ! noscmax (maximal shell number) for HFB, noscmax12, noscmax123
 0       ! if_2B (= 0 noscmax12 is not applied on V^{2B}, = 1 noscmax12 is applied also on V^{2B})
-1,10,1,10      ! min_p,max_p,min_n,max_n - config. space for TDA
-0       ! if_QTDA (= 0 for TDA, = 1 for QTDA)
+1,66,1,66      ! min_p,max_p,min_n,max_n - config. space for TDA
+1       ! if_QTDA (= 0 for TDA, = 1 for QTDA)
 1.d-10  ! precision parameter
 16.0    ! hbar*omega [MeV]
 1.0,1.0,1.0,1.0 ! quenching of proton-proton, neutron-neutron, proton-neutron and F interaction
