@@ -366,7 +366,7 @@
 
          E_diff2=E_HFB-E_orig2
 
-         write(*,*) E_HFB,ferp,fern
+         write(*,'(3f15.7)') E_HFB,ferp,fern
 
          call hp_field(hp)
          call hn_field(hn)

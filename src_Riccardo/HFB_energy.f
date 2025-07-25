@@ -65,7 +65,7 @@
          if(klpoi1(k,n).ne.0) then
           do i=1,id
           do l=1,id
-            if(klpoi1(i,l).ne.0) then 
+            if(klpoi1(i,l).ne.0) then
 
 !           if(lev1pn(i)%l.eq.lev1pn(l)%l.and.
 !     &                         lev1pn(i)%j2.eq.lev1pn(l)%j2) then
@@ -125,49 +125,56 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 !      Calculation of the pairing energy
 
-       if(ifp_hfb.or.ifn_hfb) then
+      if(ifp_hfb.or.ifn_hfb) then
 
        allocate(Vpp_gen(id,id,id,id),Vnn_gen(id,id,id,id))
        Vpp_gen=0.d0
        Vnn_gen=0.d0
 
+!$OMP PARALLEL DEFAULT(SHARED) 
+!$OMP& PRIVATE(j,k,l,valp,valn,m,n)
+
        do i=1,id
         do j=1,id
+        if(klpoi1(i,j).ne.0) then
          do k=1,id
           do l=1,id
+          if(klpoi1(k,l).ne.0) then
            valp=0.d0
            valn=0.d0
 
            do m=1,id
             do n=1,id
-             if(klpoi1(m,n).ne.0) then
-               valp=valp+
-     &            +rhop_HFB(lp1(n),lp1(m))
-     &            *V3BNO2(i,j,k,l,0,itpoi1(1,1,3),klpoi1(m,n))
-     &            +(1.d0/3.d0)*rhon_HFB(lp1(n),lp1(m))
-     &            *V3BNO2(i,j,k,l,0,itpoi1(1,1,3),klpoi1(m,n))
-     &            +(2.d0/3.d0)*rhon_HFB(lp1(n),lp1(m))
-     &            *V3BNO2(i,j,k,l,0,itpoi1(1,1,1),klpoi1(m,n))
+            if(klpoi1(m,n).ne.0) then
 
-               valn=valn+
-     &            +rhon_HFB(lp1(n),lp1(m))
-     &            *V3BNO2(i,j,k,l,0,itpoi1(1,1,3),klpoi1(m,n))
-     &            +(1.d0/3.d0)*rhop_HFB(lp1(n),lp1(m))
-     &            *V3BNO2(i,j,k,l,0,itpoi1(1,1,3),klpoi1(m,n))
-     &            +(2.d0/3.d0)*rhop_HFB(lp1(n),lp1(m))
-     &            *V3BNO2(i,j,k,l,0,itpoi1(1,1,1),klpoi1(m,n))
-             endif
+             valp=valp
+     &+rhop_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,3)
+     &+rhon_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,3)/3.d0
+     &+rhon_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,1)*2.d0/3.d0
+
+             valn=valn
+     &+rhon_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,3)
+     &+rhop_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,3)/3.d0
+     &+rhop_HFB(lp1(n),lp1(m))*V3BNO2_me(i,j,m,k,l,n,0,1,1,1)*2.d0/3.d0
+     
+            endif 
+
             enddo
            enddo
 
            Vpp_gen(lp1(i),lp1(j),lp1(k),lp1(l))=
-     &                         Vpp_me(lp1(i),lp1(j),lp1(k),lp1(l),0)+valp
+     &           Vpp_me(lp1(i),lp1(j),lp1(k),lp1(l),0)+valp
            Vnn_gen(lp1(i),lp1(j),lp1(k),lp1(l))=
-     &                         Vnn_me(lp1(i),lp1(j),lp1(k),lp1(l),0)+valn
+     &           Vnn_me(lp1(i),lp1(j),lp1(k),lp1(l),0)+valn
+
+           endif
           enddo
          enddo
+         endif
         enddo
        enddo
+
+!$OMP END PARALLEL
 
 !       do i=1,id
 !        do j=1,id
@@ -185,6 +192,11 @@
 !         enddo
 !        enddo
 !       enddo
+
+!$OMP PARALLEL DEFAULT(SHARED) 
+!$OMP& PRIVATE(j,k,l)
+!$OMP DO REDUCTION(+:E_pair)
+
        do i=1,id
         do j=1,id
          do k=1,id
@@ -201,6 +213,8 @@
          enddo
         enddo
        enddo
+!$OMP END DO
+!$OMP END PARALLEL
 
        deallocate(Vpp_gen,Vnn_gen)
 
