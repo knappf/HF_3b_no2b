@@ -1,4 +1,4 @@
-      program Phonon_EDF
+      program Phonon_HFB
 
        USE technical
        USE math
