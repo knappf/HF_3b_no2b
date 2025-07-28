@@ -18,7 +18,6 @@ c     HFB code for spherical nuclei
 
         call kinetic
         write(*,*)'Loading interaction ...'
-c        call interaction
         call interaction_binary
         write(*,*)'Interaction loaded'
 
