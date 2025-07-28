@@ -28,7 +28,8 @@
        logical :: ifp_hfb, ifn_hfb
 
        common /input/ AZ, AN, noscmax, noscmax12, noscmax123, nosc_TDA, 
-     &  dmax, dmax12, dmax123, if_QTDA, if_ort, if_2b
+     &  dmax, dmax12, dmax123, if_QTDA, if_ort, if_2b,
+     &  noscmax_2b,noscmax12_2b
        common /spacetda/ min_p,max_p,min_n,max_n
        common /hb/ hbarom
        common /pre/ precis

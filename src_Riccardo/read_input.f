@@ -5,6 +5,7 @@
 
        open(unit=1, file='input.dat', status= 'old', form= 'formatted')
         read(1,*) i,j
+        read(1,*) noscmax_2b,noscmax12_2b
         read(1,*) k,k12,k123
         read(1,*) kk,kk12,kk123
         read(1,*) if_2b
@@ -42,10 +43,16 @@
        write(*,*) 'HF input parameters:'
        write(*,*) 'A=',AZ+AN,'Z=',AZ
        write(*,*) 
-       write(*,*) 'Model space:'
+       
+       write(*,*) 'Model space of 2N interction file:'
+       write(*,*) 'noscmax1=',noscmax_2b
+       write(*,*) 'noscmax2=',noscmax12_2b     
+
+       write(*,*) 'Model space of 3N interction file:'
        write(*,*) 'noscmax1=',noscmax
        write(*,*) 'noscmax2=',noscmax12
        write(*,*) 'noscmax3=',noscmax123       
+       write(*,*) 'Model space for calculation:'
        write(*,*) 'dmax1=',dmax
        write(*,*) 'dmax2=',dmax12
        write(*,*) 'dmax3=',dmax123       
