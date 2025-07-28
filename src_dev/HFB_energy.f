@@ -119,9 +119,6 @@
 !$OMP END DO
 !$OMP END PARALLEL
 
-
-
-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 !      Calculation of the pairing energy
 
