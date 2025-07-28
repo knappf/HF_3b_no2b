@@ -1,3 +1,4 @@
+c     HFB code for spherical nuclei      
       program Phonon_HFB
 
        USE technical
