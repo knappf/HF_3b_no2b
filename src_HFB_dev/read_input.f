@@ -3,7 +3,8 @@
        include 'define.inc'
        include 'parameters.inc' 
 
-       open(unit=1, file='input_HFB.dat', status= 'old', form= 'formatted')
+       open(unit=1, file='input_HFB.dat',
+     &   status= 'old', form= 'formatted')
         read(1,*) i,j
         read(1,*) noscmax_2b,noscmax12_2b
         read(1,*) k,k12,k123
