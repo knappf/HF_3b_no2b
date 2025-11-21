@@ -1,7 +1,6 @@
 *.mod
 *.o
 .vscode/
-run/
 run_test/
 run_test_dev/
 run_test2/
