@@ -49,7 +49,7 @@
          lhfp(i)%j2=jjjj
          lhfp(i)%qei=denom !dsqrt(w1(nklm))
          lhfp(i)%ei=h_elem+ferp
-         lhfp(i)%ui=dsqrt(uusum)
+         lhfp(i)%ui=dsqrt(uusum)*(-1)**lhfp(i)%l
          lhfp(i)%vi=dsqrt(vvsum)
         enddo
         Vp_HFB=0.d0
@@ -112,7 +112,7 @@
          lhfn(i)%j2=jjjj
          lhfn(i)%qei=denom !dsqrt(w2(nklm))
          lhfn(i)%ei=h_elem+fern
-         lhfn(i)%ui=dsqrt(uusum)
+         lhfn(i)%ui=dsqrt(uusum)*(-1)**lhfn(i)%l
          lhfn(i)%vi=dsqrt(vvsum)
         enddo
         Vn_HFB=0.d0

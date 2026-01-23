@@ -31,7 +31,7 @@
         inn=inn+levn(i)%j2+1
         if(.not.ocp) then
          levp(i)%vi=0.d0
-         levp(i)%ui=1.d0 !dsqrt(dble(levp(i)%j2+1))
+         levp(i)%ui=1.d0*(-1)**levp(i)%l !dsqrt(dble(levp(i)%j2+1))
          Vp_HFB(i,i)=0.d0
          Up_HFB(i,i)=1.d0 !dsqrt(dble(levp(i)%j2+1))
         endif
@@ -46,14 +46,15 @@
           ocp=.false.
           levp(i)%vi=
      &           (dble(levp(i)%j2+1-ipp+AZ)/dble(levp(i)%j2+1))**0.5d0 !dsqrt(dble(levp(i)%j2+1-ipp+AZ))
-          levp(i)%ui=dsqrt(dble(ipp-AZ)/dble(levp(i)%j2+1)) !dsqrt(dble(ipp-AZ))
+          levp(i)%ui=dsqrt(dble(ipp-AZ)/dble(levp(i)%j2+1)) 
+     &     *(-1)**levp(i)%l!dsqrt(dble(ipp-AZ))
           Vp_HFB(i,i)=levp(i)%vi
           Up_HFB(i,i)=levp(i)%ui
          endif
         endif
         if(.not.ocn) then
          levn(i)%vi=0.d0
-         levn(i)%ui=1.d0 !dsqrt(dble(levn(i)%j2+1))
+         levn(i)%ui=1.d0*(-1)**levn(i)%l !dsqrt(dble(levn(i)%j2+1))
          Vn_HFB(i,i)=0.d0
          Un_HFB(i,i)=1.d0 !dsqrt(dble(levn(i)%j2+1))
         endif
@@ -68,7 +69,8 @@
           ocn=.false.
           levn(i)%vi=
      &           (dble(levn(i)%j2+1-inn+AN)/dble(levn(i)%j2+1))**0.5d0 !dsqrt(dble(levn(i)%j2+1-inn+AN))
-          levn(i)%ui=dsqrt(dble(inn-AN)/dble(levn(i)%j2+1)) !dsqrt(dble(inn-AN))
+          levn(i)%ui=dsqrt(dble(inn-AN)/dble(levn(i)%j2+1)) 
+     &     *(-1)**levn(i)%l!dsqrt(dble(inn-AN))
           Vn_HFB(i,i)=levn(i)%vi
           Un_HFB(i,i)=levn(i)%ui
          endif
